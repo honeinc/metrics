@@ -6,9 +6,16 @@
 */
 
 let Event = require( './src/event' ),
-    send = require( './src/send' );
+    send = require( './src/send' ),
+    browser = require( './src/browser' ),
+    utils = require( './src/utils' );
 
 module.exports = window.metrics = new Metrics();
+module.exports.Metrics = Metrics;
+module.exports.Event = Event;
+module.exports._send = send;
+module.exports._browser = browser;
+module.exports._utils = utils;
 
 function Metrics ( ) { 
     this.identity = {};
