@@ -9,18 +9,17 @@ let Event = require( './src/event' ),
     send = require( './src/send' ),
     browser = require( './src/browser' ),
     mixpanel = require( './src/mixpanel' ),
-    utils = require( './src/utils' );
+    utils = require( './src/utils' ),
+    queue = window.metrics ? window.metrics._queue : null;
 
-module.exports = window.metrics = new Metrics();
-module.exports.Metrics = Metrics;
-module.exports.Event = Event;
-module.exports._send = send;
-module.exports._browser = browser;
-module.exports._utils = utils;
-module.exports.__mixpanel = mixpanel;
 
-function Metrics ( ) { 
+function Metrics ( queue ) { 
     this.identity = {};
+    this._queue = queue || [];
+    if ( this._queue.length ) {
+        this._queue.forEach( ( call ) => this[ call.method ].apply( this, call.arguments ) );
+        this._queue.length = 0; // remove all from queue
+    }
 }
 
 /*
@@ -85,3 +84,11 @@ Metrics.prototype.register = function ( identity = {} ) {
         this._mixpanel.register( identity );
     }
 };
+
+module.exports = window.metrics = new Metrics( queue );
+module.exports.Metrics = Metrics;
+module.exports.Event = Event;
+module.exports._send = send;
+module.exports._browser = browser;
+module.exports._utils = utils;
+module.exports.__mixpanel = mixpanel;
