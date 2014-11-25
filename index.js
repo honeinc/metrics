@@ -1,3 +1,6 @@
+
+'use strict';
+
 /*
     Metrics.js
     ==================================================================
@@ -5,7 +8,7 @@
     be lightweight and simple to use.
 */
 
-let Event = require( './src/event' ),
+let EventModel = require( './src/event' ),
     send = require( './src/send' ),
     browser = require( './src/browser' ),
     mixpanel = require( './src/mixpanel' ),
@@ -36,7 +39,8 @@ function Metrics ( queue ) {
 Metrics.prototype.init = function ( options = {} ) {
     this.options = options;
     this.url = ( this.options.domain || '//gohone.com' ) + '/api/1.0/';
-    this._mixpanel = require( './src/mixpanel' )( options.mixpanel );
+    // this mixpanels object breaks ref when initializing so dont cache it
+    require( './src/mixpanel' )( options.mixpanel );
 };
 
 /*
@@ -49,10 +53,10 @@ Metrics.prototype.init = function ( options = {} ) {
 */
 
 Metrics.prototype.track = function ( eventName = 'Unknown', meta = {} ) {
-    let event = new Event( eventName, meta, this.identity );
+    let event = new EventModel( eventName, meta, this.identity );
     send( this.url + 'Events', event.toObject() );
-    if ( this._mixpanel ) {
-        this._mixpanel.track( eventName, meta );
+    if ( window.mixpanel ) {
+        window.mixpanel.track( eventName, meta );
     }
 };
 
@@ -64,10 +68,10 @@ Metrics.prototype.track = function ( eventName = 'Unknown', meta = {} ) {
 */
 
 Metrics.prototype.identify = function ( identity = {} ) {
-    this.identity = identity
-    if ( this._mixpanel ) {
-        this._mixpanel.identify( identity.id );
-        this._mixpanel.name_tag( identity.email );
+    this.identity = identity;
+    if ( window.mixpanel ) {
+        window.mixpanel.identify( identity.id );
+        window.mixpanel.name_tag( identity.email );
     }
 };
 
@@ -80,14 +84,14 @@ Metrics.prototype.identify = function ( identity = {} ) {
 
 Metrics.prototype.register = function ( identity = {} ) {
     // this is one we should just push to mixpanel
-    if ( this._mixpanel ) {
-        this._mixpanel.register( identity );
+    if ( window.mixpanel ) {
+        window.mixpanel.register( identity );
     }
 };
 
 module.exports = window.metrics = new Metrics( queue );
 module.exports.Metrics = Metrics;
-module.exports.Event = Event;
+module.exports.Event = EventModel;
 module.exports._send = send;
 module.exports._browser = browser;
 module.exports._utils = utils;
