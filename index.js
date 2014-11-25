@@ -20,7 +20,12 @@ function Metrics ( queue ) {
     this.identity = {};
     this._queue = queue || [];
     if ( this._queue.length ) {
-        this._queue.forEach( ( call ) => this[ call.method ].apply( this, call.arguments ) );
+        for ( let i = 0; i < this._queue.length; i += 1 ) {
+            let call = this._queue[ i ];
+            if ( typeof this[ call.method ] === 'function' ) {
+                this[ call.method ].apply( this, call.arguments );
+            }
+        }
         this._queue.length = 0; // remove all from queue
     }
 }
