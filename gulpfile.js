@@ -28,4 +28,13 @@ gulp.task( 'compress', function ( ) {
         .pipe( gulp.dest( './dist' ) );
 } );
 
-gulp.task( 'default', ['build', 'compress'] );
+gulp.task( 'startup-script', function() {
+
+    gulp.src( './src/startup.js')
+        .pipe( uglify() )
+        .pipe( rename( 'startup.min.js' ) )
+        .pipe( gulp.dest( './dist' ) );
+
+} );
+
+gulp.task( 'default', ['build', 'compress', 'startup-script'] );
