@@ -1,0 +1,13 @@
+<!doctype html>
+<title>Metrics Script test</title>
+<script>
+    !function(t){function e(){this._queue=[]}function n(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="../dist/metrics.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}function r(t){return function(){metrics._queue.push({method:t,arguments:arguments})}}var i="init,track,identify,register".split(",");t.metrics=new e;for(var s=0;s<i.length;s+=1)metrics[i[s]]=r(i[s]);metrics.load=n}(window);
+
+    metrics.load( 'path-to', 'version' );
+
+    metrics.init( {
+        domain: 'http://localhost:8000'
+    } );
+
+    metrics.track( 'page', { serverRendered: true } );
+</script>
