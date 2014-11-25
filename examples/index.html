@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Metrics Script test</title>
+<script src="../dist/metrics.js"></script>
+<script>
+    metrics.init({
+        domain: 'http://localhost:8000'
+    })
+
+    metrics.track( 'page', { serverRendered: true } );
+</script>
