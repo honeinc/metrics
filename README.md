@@ -73,3 +73,18 @@ To register a user
 metrics.register( { User } );
 ```
 
+## Contributing
+
+All the the dependencies to build the script can all be installed using [npm](http://npmjs.org).
+
+    $ npm install
+
+To build the script all you need to run is.
+
+    $ npm run build
+
+If your code looks good next to make sure it is all good run 
+
+    $ npm test
+
+to test your code. You will need [Firefox](https://www.mozilla.org/en-US/firefox/new/) to run the tests inside of.
