@@ -25,8 +25,8 @@ test( 'tesing utils::mixin', function( t ) {
     t.equals( typeof metrics._utils.mixin, 'function', 'Utils::mixin is an function' );
     t.equals( typeof metrics._utils.mixin( target, { foo: 'bar' } ) , 'object', 'Utils::mixin returns an object' );
     t.equals( target.foo , 'bar', 'Utils::mixin extends the target object' );
-    muliparams = metrics._utils.mixin( {}, { baz : 'qux' }, { bar: 'baz' } );
-    t.equals( muliparams.baz , 'qux', 'Utils::mixin extends with the second param obj correctly' );
-    t.equals( muliparams.bar , 'baz', 'Utils::mixin extends with the third param obj correctly' );
+    multiparams = metrics._utils.mixin( {}, { baz : 'qux' }, { bar: 'baz' } );
+    t.equals( multiparams.baz , 'qux', 'Utils::mixin extends with the second param obj correctly' );
+    t.equals( multiparams.bar , 'baz', 'Utils::mixin extends with the third param obj correctly' );
     t.end();
 } );

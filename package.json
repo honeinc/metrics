@@ -4,7 +4,7 @@
   "description": "a small script to capture events and then send them to our server",
   "main": "index.js",
   "scripts": {
-    "test": "browserify test/*.js -t es6ify | tape-run",
+    "test": "browserify test/*.js -t es6ify | tape-run -b phantom",
     "build": "gulp"
   },
   "repository": {
