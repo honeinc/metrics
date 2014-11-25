@@ -8,6 +8,7 @@
 let Event = require( './src/event' ),
     send = require( './src/send' ),
     browser = require( './src/browser' ),
+    mixpanel = require( './src/mixpanel' ),
     utils = require( './src/utils' );
 
 module.exports = window.metrics = new Metrics();
@@ -16,6 +17,7 @@ module.exports.Event = Event;
 module.exports._send = send;
 module.exports._browser = browser;
 module.exports._utils = utils;
+module.exports.__mixpanel = mixpanel;
 
 function Metrics ( ) { 
     this.identity = {};
