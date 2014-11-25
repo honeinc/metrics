@@ -1,4 +1,4 @@
-# Metrics.js
+# Metrics.js [![Build Status](https://travis-ci.org/honeinc/metrics.svg?branch=fix%2Ftravis)](https://travis-ci.org/honeinc/metrics)
 
 Metrics.js is a simple script that will log events to [Hone's](http://gohone.com) server as well as [Mixpanel's](https://mixpanel.com). It is written with some ES6 features so it needs to compiled using [es6ify](https://github.com/thlorenz/es6ify).
 
