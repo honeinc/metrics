@@ -1,4 +1,6 @@
 
+'use strict';
+
 let browser = require( './browser' ),
     mixin = require( './utils' ).mixin;
 

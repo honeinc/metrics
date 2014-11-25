@@ -1,4 +1,5 @@
 
+'use strict';
 
 const makeArray =
 module.exports.makeArray = function ( arr ) {

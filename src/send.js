@@ -1,3 +1,6 @@
+
+'use strict';
+
 var xhr = require( 'xhr' );
 
 function noop ( ) { }
@@ -12,10 +15,10 @@ module.exports = function( uri, body = {}, callback = noop ) {
 
     xhr({
         uri: uri,
-        body: JSON.stringify( body ),
+        body: JSON.stringify( payload ),
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
     }, callback );
-}
+};

@@ -1,9 +1,9 @@
 
+'use strict';
+
 const UAParser = require( 'ua-parser-js' ); 
 
-function noop ( ) { }
-
-module.exports.getInfo = function ( callback = noop ) {
+module.exports.getInfo = function ( ) {
 
     let parser = new UAParser();
 
