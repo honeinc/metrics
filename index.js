@@ -59,7 +59,7 @@ Metrics.prototype.init = function ( options = {} ) {
             once the xhr has a readyState of 4
 */
 
-Metrics.prototype.track = function ( eventName = 'Unknown', meta = {}, callback ) {
+Metrics.prototype.track = function ( eventName = 'Unknown', meta = {}, callback = utils.noop ) {
     let event = new EventModel( eventName, meta, this.identity );
     send( this.url + 'Events', event.toObject(), callback );
     if ( window.mixpanel ) {

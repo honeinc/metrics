@@ -1,9 +1,8 @@
 
 'use strict';
 
-var xhr = require( 'xhr' );
-
-function noop ( ) { }
+var xhr = require( 'xhr' ),
+    noop = require( './utils' ).noop;
 
 module.exports = function( uri, body = {}, callback = noop ) {
     var payload = { 

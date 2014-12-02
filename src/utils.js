@@ -25,3 +25,5 @@ module.exports.mixin = function( ) {
     return target;
 
 };
+
+module.exports.noop = function( ) { };
