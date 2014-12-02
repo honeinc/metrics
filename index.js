@@ -55,11 +55,13 @@ Metrics.prototype.init = function ( options = {} ) {
     params
         eventName { String } - eventName in a string defaults to Unknown
         meta { Object } - keys to store in event defaults to an empty object
+        callback { Function } - optional.. a callback that will be called once 
+            once the xhr has a readyState of 4
 */
 
-Metrics.prototype.track = function ( eventName = 'Unknown', meta = {} ) {
+Metrics.prototype.track = function ( eventName = 'Unknown', meta = {}, callback ) {
     let event = new EventModel( eventName, meta, this.identity );
-    send( this.url + 'Events', event.toObject() );
+    send( this.url + 'Events', event.toObject(), callback );
     if ( window.mixpanel ) {
         window.mixpanel.track( eventName, meta );
     }
