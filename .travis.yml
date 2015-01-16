@@ -8,4 +8,4 @@ before_install:
 notifications:
     slack:
         rooms:
-            - gohone:k6kkTNlonb8PrSUb890lrpC5#tech
+            - secure: "+jkwcQ/4YJxUzPyU6s9zD2kcoKS6T0FrgiODJszOWbIbPJvlJuY41TZg8D0nQOlsayFSZhCnWjwBER8qS14VrJHNn7YAthb4Cg2AbaNWIvT2wywTcSxqHhL86MlqLBsMa73EzpaWnbwfwsCF9T4NTuLdVnXWCHXB+4s2IzimOfk=" 
