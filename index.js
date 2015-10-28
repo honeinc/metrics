@@ -60,6 +60,16 @@ Metrics.prototype.init = function ( options = {} ) {
 */
 
 Metrics.prototype.track = function ( eventName = 'Unknown', meta = {}, callback = utils.noop ) {
+    function removeNulls(obj){
+      var isArray = obj instanceof Array;
+      for (var k in obj){
+        if (obj[k]===null) isArray ? obj.splice(k,1) : delete obj[k];
+        else if (typeof obj[k]=="object") removeNulls(obj[k]);
+      }
+    }
+    
+    removeNulls(meta);
+    
     let event = new EventModel( eventName, meta, this.identity );
     send( this.url + 'Events', event.toObject(), callback );
     if ( window.mixpanel ) {
